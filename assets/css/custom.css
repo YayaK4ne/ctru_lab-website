@@ -1,0 +1,59 @@
+/* ==========================================
+   1. LOGO RESIZING & WIDTH CONTAINER FIXES
+   ========================================== */
+
+/* Target the hardcoded Tailwind width wrappers Blowfish uses for the logo */
+span[class*="max-w-[5rem]"], 
+span[class*="w-[5rem]"], 
+.header-logo, 
+.logo {
+    width: 14rem !important;      /* Increases container width */
+    max-width: none !important;   /* Breaks the 5rem theme boundary restriction */
+    height: auto !important;      /* Allows the box to expand proportionally */
+    max-height: none !important;
+    display: inline-block !important;
+}
+
+/* Force your custom SVG image inside that container to match the new size */
+.header-logo img, 
+.header-logo svg,
+.logo svg {
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: 4.5rem !important; /* Adjust this value to make it shorter/taller vertically */
+}
+
+
+/* ==========================================
+   GLOBAL FULL-BLEED BACKGROUND IMAGE
+   ========================================== */
+
+/* Force the high-contrast image onto the base body of every page */
+body {
+    background-image: linear-gradient(rgba(11, 15, 23, 0.4), rgba(11, 15, 23, 0.4)), url('/images/background.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important; /* Keeps background locked while scrolling */
+    background-color: #0b0f17 !important;     /* Dark fallback color */
+}
+
+/* Strip default solid theme background blocks so the image shines through on all pages */
+html,
+body,
+div[class*="min-h-screen"],
+.bg-background,
+.bg-neutral,
+.bg-neutral-50,
+.dark .bg-neutral-900,
+.dark .bg-background,
+#content, 
+main, 
+header, 
+footer,
+.fixed-header,
+article {
+    background-color: transparent !important;
+    background-image: none !important;
+}
