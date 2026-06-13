@@ -7,9 +7,9 @@ span[class*="max-w-[5rem]"],
 span[class*="w-[5rem]"], 
 .header-logo, 
 .logo {
-    width: 14rem !important;      /* Increases container width */
-    max-width: none !important;   /* Breaks the 5rem theme boundary restriction */
-    height: auto !important;      /* Allows the box to expand proportionally */
+    width: 22rem !important;      /* Increased from 14rem to accommodate a larger logo */
+    max-width: none !important;   
+    height: auto !important;      
     max-height: none !important;
     display: inline-block !important;
 }
@@ -21,25 +21,45 @@ span[class*="w-[5rem]"],
     width: 100% !important;
     height: auto !important;
     max-width: none !important;
-    max-height: 4.5rem !important; 
+    max-height: 10rem !important; /* Increased from 4.5rem to physically make it taller */
 }
-
-
 /* ==========================================
-   2. SITE-WIDE GLOBAL BACKGROUND IMAGE
+   2. SITE-WIDE GLOBAL BACKGROUND IMAGE (FIXED BLUR)
    ========================================== */
 
-/* Set the image globally on the base window frame */
-html, body {
-    background-image: url('/images/bg-pattern.png') !important;
-    background-attachment: fixed !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
+/* Set up the base HTML frame to hold the background asset safely */
+html {
+    background: url('/images/bg-pattern.png') no-repeat center center fixed !important;
     background-size: cover !important;
+    min-height: 100vh;
 }
 
-/* Make only the color canvas elements transparent so the image peeks through,
-   without breaking any margins, widths, or layout positioning */
+/* Apply a global backdrop blur filter to the base html layer.
+   This avoids using body::before pseudo-elements that break layout widths. */
+html::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* This applies a uniform blur over the whole asset without layout distortion */
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(px) !important;
+    background-color: rgba(11, 12, 16, 0.3) !important; /* Gentle dark tint to tone down busy patterns */
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Ensure the body frame handles scrolling beautifully over our fixed background */
+body {
+    background: transparent !important;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Keep canvas layer fills transparent so the blurred graphics show everywhere */
 .bg-body,
 .bg-background,
 #main-layout {
@@ -47,11 +67,48 @@ html, body {
     background-image: none !important;
 }
 
-/* Optional: To make sure your text stays readable against the new pattern,
-   this tints the main homepage content column slightly */
+/* Keeps your text content container sharp and highly legible over the soft blur */
 main .prose, 
 .homepage-layout {
     background-color: rgba(15, 15, 15, 0.45) !important;
     padding: 1.5rem;
     border-radius: 0.75rem;
+}
+
+/* ==========================================
+   3. FORCE CENTRAL CONTENT ALIGNMENT
+   ========================================== */
+
+/* Force the main outer wrapper to sit dead-center in the viewport */
+#main-layout,
+.max-w-7xl,
+.min-h-screen {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+/* Ensure the wrapper respects proper max-widths instead of stretching or snapping left */
+.container,
+main {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+}
+
+/*For publications page, ensure the content is centered and not left-aligned */
+/* Custom formatting style for the layout cards in image_15eafd.png */
+.border-l-4 {
+    border-left-width: 4px !important;
+}
+
+/* Ensure paper entries don't blend entirely into the blurred background pattern */
+.bg-white\/80 {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+.dark .dark\:bg-zinc-900\/80 {
+    background-color: rgba(24, 24, 27, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
