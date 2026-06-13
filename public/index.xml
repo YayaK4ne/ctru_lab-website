@@ -11,5 +11,55 @@
     <copyright>© 2026 CTru AI Lab</copyright>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
+    <item>
+      <title>Anjana Suresh Ummanath</title>
+      <link>http://localhost:1313/team/anjana/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>yaya.kane@mail.mcgill.ca (CTru AI Lab)</author>
+      <guid>http://localhost:1313/team/anjana/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Diego Cerda Mardini</title>
+      <link>http://localhost:1313/team/diego/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>yaya.kane@mail.mcgill.ca (CTru AI Lab)</author>
+      <guid>http://localhost:1313/team/diego/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Dr. Sreenath Madathil</title>
+      <link>http://localhost:1313/team/sreenath/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>yaya.kane@mail.mcgill.ca (CTru AI Lab)</author>
+      <guid>http://localhost:1313/team/sreenath/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Mridul Sharma</title>
+      <link>http://localhost:1313/team/mridul/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>yaya.kane@mail.mcgill.ca (CTru AI Lab)</author>
+      <guid>http://localhost:1313/team/mridul/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Yaya Kane</title>
+      <link>http://localhost:1313/team/yaya/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>yaya.kane@mail.mcgill.ca (CTru AI Lab)</author>
+      <guid>http://localhost:1313/team/yaya/</guid>
+      <description></description>
+      
+    </item>
+    
   </channel>
 </rss>

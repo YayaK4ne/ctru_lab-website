@@ -99,8 +99,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.beb3faf5f44637724b574e0b73294cb047f53cb19fc1b079accf5867d7fb1b2171a20ccb5973eb966524907f5ea7f76947905af2f1041081ee3ce62cda2e2f10.css"
-    integrity="sha512-vrP69fRGN3JLV04LcylMsEf1PLGfwbB5rM9YZ9f7GyFxogzLWXPrlmUkkH9ep/dpR5Ba8vEEEIHuPOYs2i4vEA==">
+    href="/css/main.bundle.min.fcaf8581921ef53c1e0506f8737819ca9a1f5939c0c94870b63a907d06fdcbc6eaf6ebbc5e6ad84c93bf5eb7377d7f4da2291db7e8c2868d738a1a7665d741ef.css"
+    integrity="sha512-/K&#43;FgZIe9TweBQb4c3gZypofWTnAyUhwtjqQfQb9y8bq9uu8XmrYTJO/Xrc3fX9Noikdt&#43;jCho1zihp2ZddB7w==">
 
   
   
@@ -639,6 +639,72 @@
     <div class="relative flex flex-col grow">
       <main id="main-content" class="grow">
         
+
+<div class="mb-8 max-w-md mx-auto px-2 relative z-30">
+  <div class="relative flex items-center">
+    
+    <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-neutral-400 z-20">
+      🔍
+    </span>
+    
+    <input 
+      type="text" 
+      id="universal-pub-search" 
+      placeholder="Search by title, author, journal..." 
+      class="w-full pl-12 pr-4 py-2.5 rounded-xl border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm shadow-sm relative z-10"
+      style="background-color: #18181b !important; color: #ffffff !important; border: 1px solid #3f3f46 !important;"
+    />
+  </div>
+  
+  <p id="universal-pub-empty" class="text-center text-sm text-neutral-500 dark:text-neutral-400 mt-6 hidden">
+    No matching publications found.
+  </p>
+</div>
+
+
+<script>
+  (function() {
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchBox = document.getElementById("universal-pub-search");
+      const emptyAlert = document.getElementById("universal-pub-empty");
+
+      if (!searchBox) return;
+
+      
+      searchBox.setAttribute("style", "background-color: #18181b !important; color: #ffffff !important; border: 1px solid #3f3f46 !important;");
+
+      searchBox.addEventListener("input", function (e) {
+        const textQuery = e.target.value.toLowerCase().trim();
+        let totalMatches = 0;
+
+        
+        const pubCards = document.querySelectorAll("#publications-list > div, .publication-item, [data-search-target], .space-y-6 > div");
+
+        pubCards.forEach(card => {
+          
+          if (card.contains(searchBox)) return;
+
+          const bodyText = card.textContent.toLowerCase();
+          
+          if (bodyText.includes(textQuery)) {
+            card.style.setProperty("display", "", "important");
+            totalMatches++;
+          } else {
+            card.style.setProperty("display", "none", "important");
+          }
+        });
+
+        
+        if (totalMatches === 0 && textQuery !== "") {
+          emptyAlert.classList.remove("hidden");
+        } else {
+          emptyAlert.classList.add("hidden");
+        }
+      });
+    });
+  })();
+</script>
+
 <div class="max-w-4xl mx-auto px-4 py-8 relative z-10">
   <h1 class="text-center text-4xl font-extrabold text-neutral-900 dark:text-white mb-2">
     Publications

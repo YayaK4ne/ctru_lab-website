@@ -8,6 +8,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost:1313/team/anjana/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost:1313/contact/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -18,7 +23,22 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost:1313/team/diego/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/team/sreenath/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost:1313/news/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/team/mridul/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -34,6 +54,11 @@
   </url>
   <url>
     <loc>http://localhost:1313/publications/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/team/yaya/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

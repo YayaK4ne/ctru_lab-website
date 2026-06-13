@@ -1,4 +1,70 @@
 {{ define "main" }}
+<!-- 1. DARK-THEMED INDEPENDENT SEARCH BAR -->
+<div class="mb-8 max-w-md mx-auto px-2 relative z-30">
+  <div class="relative flex items-center">
+    <!-- Magnifier Icon -->
+    <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-neutral-400 z-20">
+      🔍
+    </span>
+    <!-- Hardcoded Sleek Dark Input for Universal Legibility -->
+    <input 
+      type="text" 
+      id="universal-pub-search" 
+      placeholder="Search by title, author, journal..." 
+      class="w-full pl-12 pr-4 py-2.5 rounded-xl border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm shadow-sm relative z-10"
+      style="background-color: #18181b !important; color: #ffffff !important; border: 1px solid #3f3f46 !important;"
+    />
+  </div>
+  <!-- No Results Alert -->
+  <p id="universal-pub-empty" class="text-center text-sm text-neutral-500 dark:text-neutral-400 mt-6 hidden">
+    No matching publications found.
+  </p>
+</div>
+
+<!-- 2. BULLETPROOF ELEMENT SEARCH ENGINE -->
+<script>
+  (function() {
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchBox = document.getElementById("universal-pub-search");
+      const emptyAlert = document.getElementById("universal-pub-empty");
+
+      if (!searchBox) return;
+
+      // Ensure the theme's default styles never overwrite our dark-mode color scheme
+      searchBox.setAttribute("style", "background-color: #18181b !important; color: #ffffff !important; border: 1px solid #3f3f46 !important;");
+
+      searchBox.addEventListener("input", function (e) {
+        const textQuery = e.target.value.toLowerCase().trim();
+        let totalMatches = 0;
+
+        // Scans the immediate container for publication layout elements
+        const pubCards = document.querySelectorAll("#publications-list > div, .publication-item, [data-search-target], .space-y-6 > div");
+
+        pubCards.forEach(card => {
+          // Avoid targeting the search bar container itself
+          if (card.contains(searchBox)) return;
+
+          const bodyText = card.textContent.toLowerCase();
+          
+          if (bodyText.includes(textQuery)) {
+            card.style.setProperty("display", "", "important");
+            totalMatches++;
+          } else {
+            card.style.setProperty("display", "none", "important");
+          }
+        });
+
+        // Toggle the empty state message
+        if (totalMatches === 0 && textQuery !== "") {
+          emptyAlert.classList.remove("hidden");
+        } else {
+          emptyAlert.classList.add("hidden");
+        }
+      });
+    });
+  })();
+</script>
+
 <div class="max-w-4xl mx-auto px-4 py-8 relative z-10">
   <h1 class="text-center text-4xl font-extrabold text-neutral-900 dark:text-white mb-2">
     {{ .Title }}

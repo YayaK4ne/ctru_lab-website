@@ -1,0 +1,53 @@
+{{ define "main" }}
+<div class="max-w-5xl mx-auto px-4 py-8 relative z-10">
+  
+  <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 p-8 border border-neutral-200/20 dark:border-neutral-700/40 rounded-2xl bg-white/40 dark:bg-zinc-900/40 backdrop-blur-md shadow-md mb-12">
+    <div class="w-40 h-40 rounded-full p-[4px] bg-gradient-to-tr from-blue-600 via-purple-500 to-pink-500 shadow-xl flex-shrink-0">
+      <img src="{{ .Params.avatar }}" alt="{{ .Title }}" class="w-full h-full rounded-full object-cover m-0 p-0 block bg-zinc-900">
+    </div>
+    
+    <div class="text-center sm:text-left">
+      <h1 class="text-3xl font-extrabold text-neutral-900 dark:text-white m-0 tracking-tight">
+        {{ .Title }}
+      </h1>
+      <p class="text-base text-neutral-600 dark:text-neutral-400 font-semibold m-0 mt-1">
+        {{ .Params.description }}
+      </p>
+      <p class="text-sm text-neutral-400 dark:text-neutral-500 font-medium m-0 mt-0.5">
+        {{ .Params.institution }}
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    
+    <div class="md:col-span-1 space-y-4 text-left p-4 rounded-xl bg-white/20 dark:bg-zinc-900/20 backdrop-blur-sm h-fit">
+      
+      {{ if .Params.email }}
+      <div class="flex items-center space-x-2 text-sm text-neutral-700 dark:text-neutral-300">
+        <span class="text-base">✉️</span>
+        <a href="mailto:{{ .Params.email }}" class="text-blue-600 dark:text-blue-400 hover:underline truncate block">
+          {{ .Params.email }}
+        </a>
+      </div>
+      {{ end }}
+
+      {{ range .Params.links }}
+      <div class="flex items-center space-x-2 text-sm text-neutral-700 dark:text-neutral-300">
+        <span class="text-base">{{ .icon }}</span>
+        <a href="{{ .url }}" target="_blank" rel="noopener" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+          {{ .text }}
+        </a>
+      </div>
+      {{ end }}
+
+    </div>
+
+    <div class="md:col-span-3 text-left prose prose-neutral dark:prose-invert max-w-none p-6 rounded-xl bg-white/30 dark:bg-zinc-900/30 backdrop-blur-md">
+      {{ .Content }}
+    </div>
+
+  </div>
+
+</div>
+{{ end }}
